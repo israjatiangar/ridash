@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 @layer Reset {
 	* {
 		/*outline: red solid;*/
@@ -10,6 +9,7 @@
 
 		margin: 0;
 		padding: 0;
+		resize: allow-keywords;
 	}
 	h1,
 	h2,
@@ -48,6 +48,7 @@
 	}
 }
 
+/* #region Shared */
 .riVstack {
 	display: flex;
 	flex-direction: column;
@@ -76,7 +77,6 @@
 		border-radius: var(--border-radius);
 	}
 }
-
 body {
 	display: grid;
 	font-family: 'Roboto', sans-serif;
@@ -91,14 +91,23 @@ body {
 		grid-template-columns: 1fr;
 	}
 }
+/*#endregion*/
 
+/* #region Side Navbar*/
 .riNav {
+	position: sticky;
+	top: 0;
+	left: 0;
 	width: 250px;
+	height: 100cqb;
 	color: var(--background);
 	background-color: var(--text);
 
 	@media screen and (width < 600px) {
-		width: 100cqi;
+		position: relative;
+
+		width: 100svw;
+		height: fit-content;
 	}
 	a {
 		text-decoration: none;
@@ -119,10 +128,10 @@ body {
 		opacity: 0.8;
 		padding-inline-start: 1rem;
 	}
-	.riBrand {
-		text-align: center;
-		font-size: 1.5rem;
-	}
+}
+.riBrand {
+	text-align: center;
+	font-size: 1.5rem;
 }
 
 .riNav :is(article, li, h1) {
@@ -133,7 +142,8 @@ body {
 	background: rgb(from var(--primary) r g b / 0.2);
 	fill: var(--background);
 
-	&:hover {
+	&:hover,
+	&[active] {
 		color: var(--text);
 		background: rgb(from var(--background) r g b / 0.8);
 		fill: var(--text);
@@ -144,7 +154,9 @@ body {
 		margin-left: 0.5rem;
 	}
 }
+/* #endregion */
 
+/* #region Main & Header */
 .riMain {
 	display: grid;
 
@@ -155,6 +167,7 @@ body {
 		display: none;
 	}
 	@media screen and (width < 600px) {
+		max-width: 100cqi;
 		grid-template-columns: 1fr;
 		.visibleMobile {
 			display: inline-block;
@@ -168,12 +181,16 @@ body {
 		background: rgb(from var(--background) r g b / 0.8);
 	}
 }
-.riMain header {
+.riMain > header {
+	position: sticky;
+	top: 0;
+	backdrop-filter: blur(12px);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	grid-column: 1 / -1;
 	gap: 2rem;
+	z-index: 99;
 
 	form {
 		display: flex;
@@ -250,3 +267,140 @@ body {
 		fill: inherit;
 	}
 }
+
+/* #endregion */
+
+/* #region Task View */
+.riTaskView {
+	header {
+		margin: 0.8rem;
+		display: flex;
+		& :first-child {
+			flex: 1;
+		}
+	}
+	.riStatus {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+
+		padding: 2rem;
+		border-radius: var(--border-radius);
+		background-color: var(--accent);
+		text-align: center;
+		font-size: 1.5rem;
+		color: rgb(from var(--background) r g b / 1);
+
+		:has(> &) {
+			gap: 2rem;
+		}
+		h3 {
+			color: rgb(from var(--background) r g b / 0.8);
+
+			font-size: 1.5rem;
+		}
+	}
+}
+
+.riTaskSection {
+	header {
+		font-size: 1.6rem;
+		font-weight: bold;
+	}
+	:is(.riOngoing, .riDone, .riOpen) {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	}
+	.riOpen {
+		--_taskcolor: var(--accent);
+	}
+	.riOngoing {
+		--_taskcolor: var(--primary);
+	}
+	.riDone {
+		--_taskcolor: var(--text);
+	}
+}
+
+.riTaskSection article {
+	position: relative;
+	padding: 1rem;
+	background-color: var(--background);
+	border-radius: var(--border-radius);
+	height: fit-content;
+	overflow: visible;
+
+	details {
+		display: flex;
+		flex-direction: column;
+		&[open] {
+			gap: 1rem;
+		}
+	}
+	summary {
+		position: relative;
+		display: block;
+		font-size: 1.2rem;
+		font-weight: bold;
+		&::after {
+			position: absolute;
+			right: 0;
+			content: '▶';
+			font-size: 0.8rem;
+			transition: 0.1s;
+		}
+		:is(details[open]) &::after {
+			rotate: 90deg;
+		}
+		&::before {
+			position: absolute;
+			left: -1rem;
+			top: 50%;
+			transform: translateY(-50%);
+			content: '';
+			height: 100%;
+			width: 0.2rem;
+			border-radius: 100vh;
+			background-color: var(--_taskcolor);
+		}
+	}
+}
+/* #endregion */
+
+/* #region SideInfo Bar */
+.riSideInfo {
+	max-height: fit-content;
+}
+.riSideInfo :is(.riPipelineStatus, .riRecentActivity) {
+	margin-block: 1rem;
+	li {
+		margin-top: 0.5rem;
+		padding: 0.5rem;
+		background-color: var(--background);
+		border-radius: var(--border-radius);
+		p {
+			white-space: nowrap;
+			width: 22ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}
+.riSideInfo .riPipelineStatus {
+	li {
+		position: relative;
+
+		border: 2px solid var(--_statuscolor);
+	}
+	li[passing] {
+		--_statuscolor: #16a34a;
+	}
+	li[running] {
+		--_statuscolor: #d97706;
+	}
+	li[failed] {
+		--_statuscolor: #7f1d1d;
+	}
+}
+/* #endregion */

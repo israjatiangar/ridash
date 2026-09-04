@@ -17,7 +17,7 @@
 			<section>
 				<h2>main</h2>
 				<ul>
-					<li>
+					<li active>
 						<svg
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg">
@@ -153,75 +153,184 @@
 				</span>
 			</header>
 
-			<section>
+			<section class="riTaskView">
 				<section>
 					<header>
 						<h2>Task Board</h2>
 						<a href="">filter</a>
 						<a href="">sort</a>
 					</header>
+					<section class="riHstack">
+						<div class="riStatus">
+							<h3>Open tasks</h3>
+							<p>02</p>
+						</div>
 
-					<div>
-						<h3>Open tasks</h3>
-						<p>02</p>
-					</div>
+						<div class="riStatus">
+							<h3>In progress</h3>
+							<p>02</p>
+						</div>
 
-					<div>
-						<h3>In progress</h3>
-						<p>02</p>
-					</div>
-
-					<div>
-						<h3>Completed</h3>
-						<p>01</p>
-					</div>
+						<div class="riStatus">
+							<h3>Completed</h3>
+							<p>01</p>
+						</div>
+					</section>
 				</section>
 
-				<div>
-					<header>Open Tasks</header>
+				<div class="riTaskSection">
 					<section>
-						<article>
-							<details>
-								<summary>Something</summary>
-								<p>
-									Lorem ipsum dolor, sit amet consectetur
-									adipisicing elit. Deserunt possimus ad quas
-									aspernatur enim obcaecati quidem aut vel eos
-									nulla repellendus maiores aliquid ipsa atque
-									minima maxime, molestias natus iste?
-								</p>
-							</details>
-						</article>
+						<header>Open Tasks</header>
+						<section class="riOpen">
+							<article>
+								<details>
+									<summary>Fix broken CI pipeline</summary>
+									<p>
+										Lorem ipsum dolor, sit amet consectetur
+										adipisicing elit. Deserunt possimus ad
+										quas aspernatur enim obcaecati quidem
+										aut vel eos nulla repellendus maiores
+										aliquid ipsa atque minima maxime,
+										molestias natus iste?
+									</p>
+								</details>
+							</article>
 
-						<article>
-							<details>
-								<summary>Something</summary>
-								<p>
-									Lorem ipsum dolor, sit amet consectetur
-									adipisicing elit. Deserunt possimus ad quas
-									aspernatur enim obcaecati quidem aut vel eos
-									nulla repellendus maiores aliquid ipsa atque
-									minima maxime, molestias natus iste?
-								</p>
-							</details>
-						</article>
+							<article>
+								<details>
+									<summary>Write tests for webhook</summary>
+									<p>
+										Lorem ipsum dolor, sit amet consectetur
+										adipisicing elit. Deserunt possimus ad
+										quas aspernatur enim obcaecati quidem
+										aut vel eos nulla repellendus maiores
+										aliquid ipsa atque minima maxime,
+										molestias natus iste?
+									</p>
+								</details>
+							</article>
+						</section>
+					</section>
 
-						<article>
-							<details>
-								<summary>Something</summary>
-								<p>
-									Lorem ipsum dolor, sit amet consectetur
-									adipisicing elit. Deserunt possimus ad quas
-									aspernatur enim obcaecati quidem aut vel eos
-									nulla repellendus maiores aliquid ipsa atque
-									minima maxime, molestias natus iste?
-								</p>
-							</details>
-						</article>
+					<section>
+						<header>In Progress</header>
+						<section class="riOngoing">
+							<article>
+								<details>
+									<summary>Optimize build cache</summary>
+									<p>
+										Lorem ipsum dolor, sit amet consectetur
+										adipisicing elit. Deserunt possimus ad
+										quas aspernatur enim obcaecati quidem
+										aut vel eos nulla repellendus maiores
+										aliquid ipsa atque minima maxime,
+										molestias natus iste?
+									</p>
+								</details>
+							</article>
+
+							<article>
+								<details>
+									<summary>
+										Set up error logging with Sentry
+									</summary>
+									<p>
+										Lorem ipsum dolor, sit amet consectetur
+										adipisicing elit. Deserunt possimus ad
+										quas aspernatur enim obcaecati quidem
+										aut vel eos nulla repellendus maiores
+										aliquid ipsa atque minima maxime,
+										molestias natus iste?
+									</p>
+								</details>
+							</article>
+						</section>
+					</section>
+
+					<section>
+						<header>Completed Tasks</header>
+						<section class="riDone">
+							<article>
+								<details>
+									<summary>
+										Deploy v2.3.1 to production
+									</summary>
+									<p>
+										Lorem ipsum dolor, sit amet consectetur
+										adipisicing elit. Deserunt possimus ad
+										quas aspernatur enim obcaecati quidem
+										aut vel eos nulla repellendus maiores
+										aliquid ipsa atque minima maxime,
+										molestias natus iste?
+									</p>
+								</details>
+							</article>
+						</section>
 					</section>
 				</div>
 			</section>
-			<aside></aside>
+			<aside class="riSideInfo">
+				<section class="riVstack">
+					<article class="riPipelineStatus">
+						<h3>Pipeline Status</h3>
+						<ul>
+							<li class="riHstack" passing>
+								<p>api-gateway</p>
+								<span>passing</span>
+							</li>
+							<li class="riHstack" failed>
+								<p>auth-service</p>
+								<span>failed</span>
+							</li>
+							<li class="riHstack" running>
+								<p>frontend-build</p>
+								<span>running</span>
+							</li>
+							<li class="riHstack" passing>
+								<p>worker-queue</p>
+								<span>passing</span>
+							</li>
+							<li class="riHstack" failed>
+								<p>payments-service</p>
+								<span>failed</span>
+							</li>
+						</ul>
+					</article>
+
+					<article class="riRecentActivity">
+						<h3>Recent Activity</h3>
+						<ul class="activity-list">
+							<li class="riHstack">
+								<p>deployed api-gateway to prod</p>
+								<time datetime="2026-09-04T17:05Z">
+									2m ago
+								</time>
+							</li>
+							<li class="riHstack">
+								<p>Priya Nair merged PR #142</p>
+								<time datetime="2026-09-04T16:30Z">
+									14m ago
+								</time>
+							</li>
+							<li class="riHstack">
+								<p>Maria Garcia opened PR #145</p>
+								<time datetime="2026-09-04T15:45Z">
+									1h ago
+								</time>
+							</li>
+							<li class="riHstack">
+								<p>
+									Jordan Lee commented on "Fix broken CI
+									pipeline"
+								</p>
+								<time datetime="2026-09-04T15:45Z">
+									1h ago
+								</time>
+							</li>
+						</ul>
+					</article>
+				</section>
+			</aside>
 		</main>
 	</body>
 </html>
