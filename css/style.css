@@ -10,6 +10,7 @@
 		margin: 0;
 		padding: 0;
 		resize: allow-keywords;
+
 	}
 	h1,
 	h2,
@@ -18,11 +19,12 @@
 	h5,
 	h6 {
 		text-wrap: balanced;
-		font-size: 1rem;
+		font-size: clamp (1rem, 2vw, 2rem);
 	}
 
 	p,
 	li {
+		font-size: clamp (0.8rem, 2vw, 1rem);
 		text-wrap: pretty;
 		hanging-punctuation: first last;
 
@@ -167,7 +169,7 @@ body {
 		display: none;
 	}
 	@media screen and (width < 600px) {
-		max-width: 100cqi;
+		max-width: 100%;
 		grid-template-columns: 1fr;
 		.visibleMobile {
 			display: inline-block;
@@ -195,11 +197,17 @@ body {
 	form {
 		display: flex;
 		flex: 1;
+		flex-wrap: wrap;
+
+		& > *{
+			min-width: 0;
+		}
 
 		input {
 			flex: 1;
 			border: 0;
 		}
+
 	}
 
 	span {
